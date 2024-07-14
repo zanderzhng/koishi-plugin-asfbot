@@ -13,10 +13,31 @@
   "keywords": [
     "chatbot",
     "koishi",
-    "plugin"
+    "plugin",
+    "steam",
+    "gaming",
+    "asf",
+    "archi-steam-farming"
   ],
-  "devDependencies": {},
   "peerDependencies": {
     "koishi": "^4.17.9"
+  },
+  "dependencies": {
+    "axios": "^1.7.2"
+  },
+  "contributors": [
+    "zanderzhng <zanderzhng@gmail.com>"
+  ],
+  "homepage": "https://blog.naidis.xyz",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zanderzhng/koishi-plugin-asfbot.git"
+  },
+  "koishi": {
+    "description": {
+      "en": "Koishi plugin for Archi Steam Farm",
+      "zh": "可以控制 Archi Steam Farm 的 Koishi 插件"
+    },
+    "preview": true
   }
 }
