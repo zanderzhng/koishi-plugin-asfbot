@@ -2,21 +2,31 @@ name: Publish Package to npmjs
 
 on:
   push:
+    branches:
+      - main  # or the branch you want to trigger the action on
+  workflow_dispatch:
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
+
     steps:
-      - uses: actions/checkout@v4
-      # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: '20.x'
+          node-version: '16'  # Use the Node.js version you need
           registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm publish --provenance --access public
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build  # If you have a build step, otherwise skip this step
+
+      - name: Publish to npm
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
