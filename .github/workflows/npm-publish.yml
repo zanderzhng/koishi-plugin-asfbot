@@ -3,7 +3,7 @@ name: Publish Package to npmjs
 on:
   push:
     branches:
-      - master  # or the branch you want to trigger the action on
+      - master
   workflow_dispatch:
 
 jobs:
