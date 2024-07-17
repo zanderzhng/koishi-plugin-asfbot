@@ -3,12 +3,15 @@ name: Publish Package to npmjs
 on:
   push:
     branches:
-      - main  # or the branch you want to trigger the action on
+      - master  # or the branch you want to trigger the action on
   workflow_dispatch:
 
 jobs:
   build-publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
