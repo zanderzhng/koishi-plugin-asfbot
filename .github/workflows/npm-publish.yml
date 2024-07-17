@@ -19,8 +19,8 @@ jobs:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
       - run: npm install -g yarn
-      - run: yarn add -D typescript koishi yml-register
-      - run: yarn && yarn tsc -b && yarn pack
+      - run: yarn add -D typescript koishi yml-register esbuild tsc yakumo yakumo-esbuild yakumo-tsc
+      - run: yarn && yarn build
       - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
