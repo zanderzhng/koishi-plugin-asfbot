@@ -29,7 +29,7 @@ export const Config: Schema<Config> = Schema.object({
 export function apply(ctx: Context, config: Config) {
   const baseUrl = `http://${config.ip}:${config.port}`
   const botName = ctx.root.config.nickname[0] || 'ASF Bot'
-  const botPrefix = `[${botName}] \n`
+  const botPrefix = `[${botName}]\n`
 
   ctx.command('asf <command:text>', 'Send a command to ASF')
     .action(async (_, command) => {

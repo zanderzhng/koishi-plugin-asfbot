@@ -7,26 +7,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
+  build-publish:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '16'  # Use the Node.js version you need
+          node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build project
-        run: npm run build  # If you have a build step, otherwise skip this step
-
-      - name: Publish to npm
-        run: npm publish
+      - run: npm install -g yarn
+      - run: yarn add -D typescript koishi yml-register
+      - run: yarn && yarn tsc -b && yarn pack
+      - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
